@@ -1,4 +1,4 @@
-//=== TF, IDF, TF-IDF, BAG OF WORDS, VECTORS ===================================
+//=== TF, IDF, TF-IDF, BOW, VECTORS, ONE-HOT ===================================
 function computeTF(wordDict, bow) {
     let tfDict = {};
     let bowCount = bow.length;
@@ -92,4 +92,96 @@ function vectorsToDocs(vectors, dict, tfidf) {
     });
 
     return docs;
+}
+
+function W2vDictionary(strings) {
+    let dictionary = {};
+    strings.forEach(document => {
+        let words = document.split(' ');
+        words.forEach(word => {
+            if (!dictionary.hasOwnProperty(word)) {
+                dictionary[word] = Object.keys(dictionary).length;
+            }
+        });
+    });
+    return dictionary;
+}
+
+function WordToIndex(word, dictionary) {
+    return dictionary[word];
+}
+
+function cbowPairs(strings, windowSize) {
+    if (!Array.isArray(strings) || typeof windowSize !== 'number' || windowSize < 1) {
+        console.error('Nepareizi parametri funkcijai.');
+        return;
+    }
+    let globalData = [];
+    strings.forEach(document => {
+        let words = document.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            let target = words[i];
+            let context = [];
+
+            for (let j = -windowSize; j <= windowSize; j++) {
+                if (j === 0) continue;
+
+                let contextIndex = i + j;
+                if (contextIndex >= 0 && contextIndex < words.length) {
+                    context.push(words[contextIndex]);
+                }
+            }
+            globalData.push({ context, target });
+        }
+    });
+    // Izvada pārus konsolē
+//    globalData.forEach(pair => {
+//        console.log(`🎯 Target: ${pair.target}, ➡️ Context: ${pair.context.join(', ')}`);
+//    });
+    return globalData;
+}
+
+function cbowOneHotEncode(context, dictionary) {
+    let vector = new Array(Object.keys(dictionary).length).fill(0);
+    context.forEach(word => {
+        if (dictionary.hasOwnProperty(word)) {
+            vector[dictionary[word]] = 1;
+        }
+    });
+    return vector;
+}
+
+function sgOneHotEncode(words, dictionary) {
+    let vectors = [];
+    for (let word of words) {
+        let vector = new Array(Object.keys(dictionary).length).fill(0);
+        let index = dictionary[word];
+        vector[index] = 1;
+        vectors.push(vector);
+    }
+    return vectors.flat();
+}
+
+function SkipGramPairs(strings, windowSize) {
+    let globalPairs = [];
+    strings.forEach(document => {
+        let pairs = [];
+        let words = document.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            let target = words[i];
+
+            for (let j = -windowSize; j <= windowSize; j++) {
+                if (j !== 0 && i + j >= 0 && i + j < words.length) {
+                    let context = words[i + j];
+                    pairs.push({ target, context });
+                }
+            }
+        }
+        globalPairs.push(...pairs);
+    });
+    // Izvada pārus konsolē
+//    globalPairs.forEach(pair => {
+//        console.log(`🎯 Target: ${pair.target} ➡️ Context: ${pair.context}`);
+//    });
+    return globalPairs;
 }
