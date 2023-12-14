@@ -8,7 +8,7 @@
 // 
 //                  a) most ranked neighbours for each/all context word/s
 //                  b) unique neighbours for each/all context word/s
-//                  c) common neighbours for each/all context word/s
+//                  c) common neighbours for all context word/s
 //                  
 // Function can be adjusted with "neighbourCount" for more/less accurate context.
 // Function stopwords can be used to filter dataset in specific cases.
