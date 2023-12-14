@@ -1,4 +1,5 @@
-//=== T2SN (Text To Semantic Neighbours ========================================
+//==================== T2SN (Text To Semantic Neighbours =======================
+// 
 // Function is looking for "context" word semantic "neighbours".
 // Function is ranking "most frequent" neighbours.
 // Function compares context words by neighbours returning "common context".
@@ -13,6 +14,8 @@
 // Function stopwords can be used to filter dataset in specific cases.
 // Function is optimized for best performance.
 // Function does not use Neyral Networks but can be used further to train them.
+// 
+//==============================================================================
 
     var stopWords = [ // Example stopwords
         'a', 'the', 'is', 'are', 'and', 'or', 'but', 'of',
