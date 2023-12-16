@@ -1,4 +1,4 @@
-//================== Quest One (Interactive Dialog Algorithm) ==================
+//================== Quest One (Interactive Dialog Prototype) ==================
 // 
 // This is JavaScript prototype, which is intended to create an interactive quiz
 // or dialogue system that can be integrated in Your own web application.
