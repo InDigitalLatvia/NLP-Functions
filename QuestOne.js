@@ -17,6 +17,8 @@
 // "ConvOutObj" should be changed to Your Conversation Output element.
 // "QuestOne.getStatistics();" Conversation History (Q number: A number/answer).
 // "QuestOne.clearStatistics();" to clear Conversation statistics.
+// "maxWrongAnswers" how many times user can enter wrong answer.
+// "maxDeadend" how many times QuestData can lead to "Non Existent" question.
 // 
 //========================= AUTHOR GATIS KAULINSH ==============================
 
