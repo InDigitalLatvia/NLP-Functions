@@ -54,13 +54,14 @@ QuestOne.prototype.askQuestion = function() {
 
 QuestOne.prototype.checkAnswer = function(userAnswer) {
     var questionParts = this.questData[this.currentQuestion].split(":");
+    var questionNumber = questionParts[0];
     var answers = questionParts[2].split(";");
     for (var i = 0; i < answers.length; i++) {
         var answerParts = answers[i].split("=");
         if (userAnswer === answerParts[0].toLowerCase()) {
-            this.dialogHistory.push({ question: this.currentQuestion, answer: answerParts[1] });
+            this.dialogHistory.push({ question: questionNumber, answer: answerParts[1] });
             if (answerParts[1] === "exit") {
-                $(ConvOutObj).append("<br>Jautājumi ir beigušies! Paldies par dialogu!");
+                $(vaic_ConvOutObj).append("<br>Jautājumi ir beigušies! Paldies par dialogu!");
                 return true;
             }
             var nextQuestions = this.questData.filter(function(question) {
@@ -68,29 +69,29 @@ QuestOne.prototype.checkAnswer = function(userAnswer) {
             });
             var nextQuestion = nextQuestions[Math.floor(Math.random() * nextQuestions.length)];
             if (nextQuestion) {
-                $(ConvOutObj).append("<br>Atbilde (" + userAnswer + ") ir pareiza.");
+                $(vaic_ConvOutObj).append("<br>Atbilde (" + userAnswer + ") ir pareiza.");
                 this.currentQuestion = this.questData.indexOf(nextQuestion);
                 this.askQuestion();
             } else {
                 if (this.maxDeadend > 0) {
                     this.maxDeadend--;
-                    $(ConvOutObj).append("<br>Nevaru atrast jautājumu ar numuru (" + answerParts[1] + ").");
+                    $(vaic_ConvOutObj).append("<br>Nevaru atrast jautājumu ar numuru (" + answerParts[1] + ").");
                     this.askQuestion();
                 } else {
-                    $(ConvOutObj).append("<br>Šādu sekojošo jautājumu nav masivā! Izeju no programmas.");
+                    $(vaic_ConvOutObj).append("<br>Šādu sekojošo jautājumu nav masivā! Izeju no programmas.");
                     return true;
                 }
             }
             return true;
         }
     }
-    this.dialogHistory.push({ question: this.currentQuestion, answer: userAnswer });
+    this.dialogHistory.push({ question: questionNumber, answer: userAnswer });
     this.wrongAnswers++;
     if (this.wrongAnswers > this.maxWrongAnswers) {
-        $(ConvOutObj).append("<br>Pārāk daudz nepareizu atbilžu!");
+        $(vaic_ConvOutObj).append("<br>Pārāk daudz nepareizu atbilžu!");
         return true;
     }
-    $(ConvOutObj).append("<br>Atbilde (" + userAnswer + ") nav pareiza!");
+    $(vaic_ConvOutObj).append("<br>Atbilde (" + userAnswer + ") nav pareiza!");
     return false;
 };
 
