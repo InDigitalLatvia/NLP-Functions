@@ -61,7 +61,7 @@ QuestOne.prototype.checkAnswer = function(userAnswer) {
         if (userAnswer === answerParts[0].toLowerCase()) {
             this.dialogHistory.push({ question: questionNumber, answer: answerParts[1] });
             if (answerParts[1] === "exit") {
-                $(vaic_ConvOutObj).append("<br>Jautājumi ir beigušies! Paldies par dialogu!");
+                $(ConvOutObj).append("<br>Jautājumi ir beigušies! Paldies par dialogu!");
                 return true;
             }
             var nextQuestions = this.questData.filter(function(question) {
@@ -69,16 +69,16 @@ QuestOne.prototype.checkAnswer = function(userAnswer) {
             });
             var nextQuestion = nextQuestions[Math.floor(Math.random() * nextQuestions.length)];
             if (nextQuestion) {
-                $(vaic_ConvOutObj).append("<br>Atbilde (" + userAnswer + ") ir pareiza.");
+                $(ConvOutObj).append("<br>Atbilde (" + userAnswer + ") ir pareiza.");
                 this.currentQuestion = this.questData.indexOf(nextQuestion);
                 this.askQuestion();
             } else {
                 if (this.maxDeadend > 0) {
                     this.maxDeadend--;
-                    $(vaic_ConvOutObj).append("<br>Nevaru atrast jautājumu ar numuru (" + answerParts[1] + ").");
+                    $(ConvOutObj).append("<br>Nevaru atrast jautājumu ar numuru (" + answerParts[1] + ").");
                     this.askQuestion();
                 } else {
-                    $(vaic_ConvOutObj).append("<br>Šādu sekojošo jautājumu nav masivā! Izeju no programmas.");
+                    $(ConvOutObj).append("<br>Šādu sekojošo jautājumu nav masivā! Izeju no programmas.");
                     return true;
                 }
             }
@@ -88,10 +88,10 @@ QuestOne.prototype.checkAnswer = function(userAnswer) {
     this.dialogHistory.push({ question: questionNumber, answer: userAnswer });
     this.wrongAnswers++;
     if (this.wrongAnswers > this.maxWrongAnswers) {
-        $(vaic_ConvOutObj).append("<br>Pārāk daudz nepareizu atbilžu!");
+        $(ConvOutObj).append("<br>Pārāk daudz nepareizu atbilžu!");
         return true;
     }
-    $(vaic_ConvOutObj).append("<br>Atbilde (" + userAnswer + ") nav pareiza!");
+    $(ConvOutObj).append("<br>Atbilde (" + userAnswer + ") nav pareiza!");
     return false;
 };
 
