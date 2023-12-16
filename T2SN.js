@@ -16,6 +16,7 @@
 // Function does not use Neyral Networks but can be used further to train them.
 // 
 //==============================================================================
+//========================= AUTHOR GATIS KAULINSH ==============================
 
     var stopWords = [ // Example stopwords
         'a', 'the', 'is', 'are', 'and', 'or', 'but', 'of',
