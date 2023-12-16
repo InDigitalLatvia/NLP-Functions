@@ -1,25 +1,25 @@
 //================== Quest One (Interactive Dialog Prototype) ==================
-// 
+//
 // This is JavaScript prototype, which is intended to create an interactive quiz
 // or dialogue system that can be integrated in Your own web application.
 // The quiz questions and answers are structured in an array named QuestData.
-// 
+//
 // Array have specific but simple structure.
-// 
-// This source contains examples from the "History".
-// You can create Your own QuestData and modify functionality for Your "Needs".
-// 
+//
+// This source contains examples from the history.
+// You can create Your own QuestData and modify functionality for Your needs.
+//
 // Overall, this code sets up a simple interactive quiz system where users can
 // answer questions, receive feedback, and progress through the quiz based on
 // their answers. The implementation relies on jQuery for DOM manipulation.
-// 
-// "ConvInObj" should be changed to Your Conversation Input element.
-// "ConvOutObj" should be changed to Your Conversation Output element.
-// "QuestOne.getStatistics();" Conversation History (Q number: A number/answer).
-// "QuestOne.clearStatistics();" to clear Conversation statistics.
-// "maxWrongAnswers" how many times user can enter wrong answer.
-// "maxDeadend" how many times QuestData can lead to "Non Existent" question.
-// 
+//
+// "ConvInObj" Should be changed to Your conversation Input element.
+// "ConvOutObj" Should be changed to Your conversation Output element.
+// "QuestOne.getStatistics();" Conversation history (Q number: A number/answer).
+// "QuestOne.clearStatistics();" To clear conversation history/statistics.
+// "maxWrongAnswers" How many times user can enter wrong answer.
+// "maxDeadend" How many times QuestData can lead to non existent question.
+//
 //========================= AUTHOR GATIS KAULINSH ==============================
 
 function QuestOne(questData, startQuestionNumber, maxWrongAnswers, maxDeadend) {
