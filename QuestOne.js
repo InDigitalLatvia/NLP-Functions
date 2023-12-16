@@ -7,7 +7,7 @@
 // Array have specific but simple structure.
 // 
 // This source contains examples from the "History".
-// You can create Your own QuestData and modify function for Your "Needs".
+// You can create Your own QuestData and modify functionality for Your "Needs".
 // 
 // Overall, this code sets up a simple interactive quiz system where users can
 // answer questions, receive feedback, and progress through the quiz based on
